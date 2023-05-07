@@ -12,6 +12,11 @@ def data_plotting(df_ch: pd.DataFrame, df_ar: pd.DataFrame, df_to: pd.DataFrame)
     :return: None
     """
 
+    # dataframes with winning seasons for each team
+    df_ch_w = df_ch.loc[df_ch["Pos"] < 3]
+    df_ar_w = df_ar.loc[df_ar["Pos"] < 3]
+    df_to_w = df_to.loc[df_to["Pos"] < 3]
+
     # chart edition
     plt.style.use('seaborn-v0_8-deep')
     plt.figure(figsize=(16,8))
@@ -23,12 +28,17 @@ def data_plotting(df_ch: pd.DataFrame, df_ar: pd.DataFrame, df_to: pd.DataFrame)
     plt.plot(df_ch['Season'], df_ch['Av10'])
     plt.plot(df_ar['Season'], df_ar['Av10'])
     plt.plot(df_to['Season'], df_to['Av10'])
+    plt.scatter(df_ch_w['Season'], df_ch_w['Pos'])
+    plt.scatter(df_ar_w['Season'], df_ar_w['Pos'])
+    plt.scatter(df_to_w['Season'], df_to_w['Pos'])
 
     # captions adding
     plt.xlabel('Season')
-    plt.ylabel('Final Position in the League (10 years Average)')
-    plt.title('London FCs (10 years Average Position)')
-    plt.legend(['Chelsea', 'Arsenal', 'Tottenham'])
+    plt.ylabel('Final position (10 years Average and winning seasons)')
+    plt.title('London FCs Final Position in the League')
+    plt.legend(['Avg position of Chelsea', 'Avg position of Arsenal', 'Avg position of Tottenham',
+                "1st/2nd position of Chelsea", "1st/2nd position of Arsenal", "1st/2nd position of Tottenham"],
+               loc="lower right")
 
     # saving chart as png file
     plt.savefig('chart.png')

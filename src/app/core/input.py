@@ -30,6 +30,6 @@ def data_import_and_processing(clubname: str, wikiobj: int, collevel: int) -> pd
     # calculate moving average
     df = df.loc[df['Season'] > 1945]
     df = df.reset_index(drop=True)
-    df['Av10'] = df['Pos'].rolling(10).mean()
+    df['Av10'] = df['Pos'].rolling(10, center=True).mean()
 
     return df
