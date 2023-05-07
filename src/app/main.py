@@ -1,9 +1,13 @@
-from core.input import data_import_and_processing
-from core.output import data_plotting
+from core.input import Club
+from core.output import Plot
 
 if __name__ == "__main__":
-    ch = data_import_and_processing(clubname="Chelsea_F.C.", wikiobj=2, collevel=1)
-    ar = data_import_and_processing(clubname="Arsenal_F.C.", wikiobj=3, collevel=0)
-    to = data_import_and_processing(clubname="Tottenham_Hotspur_F.C.", wikiobj=0, collevel=1)
+    chelsea = Club(clubname="Chelsea_F.C.", wikiobj=2, collevel=1)
+    arsenal = Club(clubname="Arsenal_F.C.", wikiobj=3, collevel=0)
+    tottenham = Club(clubname="Tottenham_Hotspur_F.C.", wikiobj=0, collevel=1)
+    ch = chelsea.data_import_and_processing()
+    ar = arsenal.data_import_and_processing()
+    to = tottenham.data_import_and_processing()
 
-    data_plotting(df_ch=ch, df_ar=ar, df_to=to)
+    pl = Plot(df_ch=ch, df_ar=ar, df_to=to)
+    pl.data_plotting()
